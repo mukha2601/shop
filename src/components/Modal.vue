@@ -35,33 +35,35 @@
 
 <script>
 export default {
-  data() {
-    return {
-      productCount: null,
-    };
-  },
   props: {
     locStorArray: {
       type: Array,
     },
   },
-
   methods: {
     closeModal() {
       this.$emit("closeModal");
     },
     increment(product) {
       product.count++;
+      this.updateLocalStorage();
     },
     decrement(product) {
       if (product.count > 0) {
         product.count--;
+        this.updateLocalStorage();
       }
     },
+    updateCount(product, event) {
+      product.count = parseInt(event.target.value);
+      this.updateLocalStorage();
+    },
     updateProduct() {
+      this.updateLocalStorage();
+    },
+    updateLocalStorage() {
       const updatedArray = JSON.stringify(this.locStorArray);
-      console.log(updatedArray);
-      localStorage.setItem("buy", updatedArray);
+      localStorage.setItem("products", updatedArray);
     },
   },
   emits: ["closeModal"],
