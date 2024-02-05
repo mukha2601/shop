@@ -62,7 +62,7 @@ export default {
       const newValue = event.target.value; // Kiritilgan qiymatni butun son qilib olish
       let decimalPart = newValue.toString().slice(0, 3);
 
-      product.count = decimalPart; // Qiymatni o'zgartirish
+      product.count = +decimalPart; // Qiymatni o'zgartirish
       this.updateLocalStorage(); // LocalStorage'ni yangilash
     },
 
