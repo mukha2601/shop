@@ -21,13 +21,14 @@
               <input
                 type="number"
                 :value="product.count"
+                min="0"
                 @input="updateCount(product, $event)"
               />
             </div>
+            <!-- <button @click="updateProduct()">ok</button> -->
             <button @click="increment(product)">+</button>
           </div>
         </div>
-        <!-- <button @click="updateProduct()" class="btnOk">ok</button> -->
       </div>
     </div>
   </teleport>
@@ -54,10 +55,17 @@ export default {
         this.updateLocalStorage();
       }
     },
-    updateCount(product, event) {
-      product.count = parseInt(event.target.value);
-      this.updateLocalStorage();
+    updateProduct() {
+      this.updateLocalStorage(); // Lokal saqlash joyini yangilaydi
     },
+    updateCount(product, event) {
+      const newValue = event.target.value; // Kiritilgan qiymatni butun son qilib olish
+      let decimalPart = newValue.toString().slice(0, 3);
+
+      product.count = decimalPart; // Qiymatni o'zgartirish
+      this.updateLocalStorage(); // LocalStorage'ni yangilash
+    },
+
     updateProduct() {
       this.updateLocalStorage();
     },
@@ -108,9 +116,5 @@ export default {
 
 .card-input {
   display: flex;
-}
-
-.btnOk {
-  margin-top: 10px;
 }
 </style>
