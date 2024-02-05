@@ -27,7 +27,7 @@
             <button @click="increment(product)">+</button>
           </div>
         </div>
-        <button @click="updateProduct()" class="btnOk">ok</button>
+        <!-- <button @click="updateProduct()" class="btnOk">ok</button> -->
       </div>
     </div>
   </teleport>
